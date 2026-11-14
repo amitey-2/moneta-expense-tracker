@@ -841,3 +841,16 @@ a:focus-visible {
     height: 28px;
   }
 }
+
+
+/* Mobile-friendly transaction form navigation */
+
+#transactionSection {
+  scroll-margin-top: 24px;
+}
+
+@media (max-width: 600px) {
+  #transactionSection {
+    scroll-margin-top: 16px;
+  }
+}
