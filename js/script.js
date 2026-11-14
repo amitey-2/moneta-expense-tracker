@@ -1,5 +1,4 @@
 
-
 document.addEventListener("DOMContentLoaded", function () {
 
   // =====================================
@@ -579,7 +578,6 @@ document.addEventListener("DOMContentLoaded", function () {
     saveTransactions();
     updateCategoryFilter();
 
-    // Show the month containing the saved transaction.
     elements.monthFilter.value = date.slice(0, 7);
 
     resetForm();
@@ -644,7 +642,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       $("transactionSection").scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "center"
       });
     }
 
@@ -679,20 +677,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   elements.searchInput.addEventListener("input", renderTransactions);
   elements.typeFilter.addEventListener("change", renderTransactions);
-
   elements.categoryFilter.addEventListener("change", renderTransactions);
 
   // =====================================
-  // ADD BUTTON
+  // ADD BUTTON — MOBILE FRIENDLY
   // =====================================
 
   elements.addTransactionBtn.addEventListener("click", function () {
-    $("transactionSection").scrollIntoView({
+    const section = $("transactionSection");
+
+    section.scrollIntoView({
       behavior: "smooth",
-      block: "start"
+      block: "center"
     });
 
-    elements.titleInput.focus();
+    setTimeout(function () {
+      elements.titleInput.focus({ preventScroll: true });
+    }, 500);
   });
 
   // =====================================
@@ -747,7 +748,7 @@ document.addEventListener("DOMContentLoaded", function () {
     link.click();
     link.remove();
 
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 
   console.log("MONETA Expense Tracker loaded successfully.");
